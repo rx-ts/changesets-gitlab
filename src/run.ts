@@ -10,6 +10,7 @@ import resolveFrom from 'resolve-from'
 import semver from 'semver'
 
 import * as context from './context.js'
+import { env } from './env.js'
 import * as gitUtils from './gitUtils.js'
 import readChangesetState from './readChangesetState.js'
 import {
@@ -288,6 +289,12 @@ ${
       preState ? ` (${preState.tag})` : ''
     }`
     await gitUtils.commitAll(finalCommitMessage)
+  }
+
+  // Allow user to update their lockfiles before mr is created
+  if (env.UPDATE_PACKAGE_LOCK_BEFORE_MR === 'true') {
+    const script = env.UPDATE_PACKAGE_LOCK_SCRIPT
+    await exec(script)
   }
 
   await gitUtils.push(versionBranch, { force: true })

@@ -48,14 +48,16 @@ GLOBAL_AGENT_NO_PROXY    # Like above but for no proxied requests
 
 GITLAB_HOST # optional, if you're using custom GitLab host, will fallback to `CI_SERVER_URL` if not provided
 
-GITLAB_TOKEN                 # required, token with accessibility to push
-GITLAB_TOKEN_TYPE            # optional, type of the provided token in GITLAB_TOKEN. defaults to personal access token. can be `job` if you provide the Gitlab CI_JOB_TOKEN or `oauth` if you use Gitlab Oauth token
-GITLAB_CI_USER_NAME          # optional, username with accessibility to push, used in pairs of the above token (if it was personal access token). If not set read it from the Gitlab API
-GITLAB_CI_USER_EMAIL         # optional, default `gitlab[bot]@users.noreply.gitlab.com`
-GITLAB_COMMENT_TYPE          # optional, type of the comment. defaults to `discussion`. can be set to `note` to not create a discussion instead of a thread
-GITLAB_ADD_CHANGESET_MESSAGE # optional, default commit message for adding changesets on GitLab Web UI
-DEBUG_GITLAB_CREDENTIAL      # optional, default `false`
-GITLAB_COMMENT_CUSTOM_LINKS  # optional, allow the linkS for the absent comment to be overwritten
+GITLAB_TOKEN                  # required, token with accessibility to push
+GITLAB_TOKEN_TYPE             # optional, type of the provided token in GITLAB_TOKEN. defaults to personal access token. can be `job` if you provide the Gitlab CI_JOB_TOKEN or `oauth` if you use Gitlab Oauth token
+GITLAB_CI_USER_NAME           # optional, username with accessibility to push, used in pairs of the above token (if it was personal access token). If not set read it from the Gitlab API
+GITLAB_CI_USER_EMAIL          # optional, default `gitlab[bot]@users.noreply.gitlab.com`
+GITLAB_COMMENT_TYPE           # optional, type of the comment. defaults to `discussion`. can be set to `note` to not create a discussion instead of a thread
+GITLAB_ADD_CHANGESET_MESSAGE  # optional, default commit message for adding changesets on GitLab Web UI
+DEBUG_GITLAB_CREDENTIAL       # optional, default `false`
+GITLAB_COMMENT_CUSTOM_LINKS   # optional, allow the linkS for the absent comment to be overwritten
+UPDATE_PACKAGE_LOCK_BEFORE_MR # optional, default `false`
+UPDATE_PACKAGE_LOCK_SCRIPT    # optional, default `npm install`
 ```
 
 ### Example workflow

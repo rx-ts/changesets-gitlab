@@ -23,6 +23,8 @@ export type Env = GitLabCIPredefinedVariables &
     GITLAB_ADD_CHANGESET_MESSAGE?: string
     DEBUG_GITLAB_CREDENTIAL: LooseString<'1' | 'true'>
     GITLAB_COMMENT_CUSTOM_LINKS: string
+    UPDATE_PACKAGE_LOCK_BEFORE_MR: LooseString<'false' | 'true'>
+    UPDATE_PACKAGE_LOCK_SCRIPT: string
 
     HOME: string
     NPM_TOKEN?: string
