@@ -55,6 +55,7 @@ GITLAB_CI_USER_EMAIL         # optional, default `gitlab[bot]@users.noreply.gitl
 GITLAB_COMMENT_TYPE          # optional, type of the comment. defaults to `discussion`. can be set to `note` to not create a discussion instead of a thread
 GITLAB_ADD_CHANGESET_MESSAGE # optional, default commit message for adding changesets on GitLab Web UI
 DEBUG_GITLAB_CREDENTIAL      # optional, default `false`
+GITLAB_COMMENT_CUSTOM_LINKS  # optional, allow the linkS for the absent comment to be overwritten
 ```
 
 ### Example workflow

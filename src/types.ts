@@ -22,6 +22,7 @@ export type Env = GitLabCIPredefinedVariables &
     GITLAB_COMMENT_TYPE: LooseString<'discussion' | 'note'>
     GITLAB_ADD_CHANGESET_MESSAGE?: string
     DEBUG_GITLAB_CREDENTIAL: LooseString<'1' | 'true'>
+    GITLAB_COMMENT_CUSTOM_LINKS: string
 
     HOME: string
     NPM_TOKEN?: string
