@@ -54,7 +54,7 @@ GITLAB_CI_USER_NAME                   # optional, username with accessibility to
 GITLAB_CI_USER_EMAIL                  # optional, default `gitlab[bot]@users.noreply.gitlab.com`
 GITLAB_COMMENT_TYPE                   # optional, type of the comment. defaults to `discussion`. can be set to `note` to not create a discussion instead of a thread
 GITLAB_ADD_CHANGESET_MESSAGE          # optional, default commit message for adding changesets on GitLab Web UI
-GITLAB_COMMENT_DISCUSSION_AUTORESOLVE # optional, automaticly resolve added discussion with options to resolve discussion by default (value `all`) or resolve only when changeset is present (value `hasChangeset`)
+GITLAB_COMMENT_DISCUSSION_AUTORESOLVE # optional, automaticly resolve added discussion with options to resolve discussion by default (value `always`) or resolve only when changeset is present (value `hasChangeset`)
 DEBUG_GITLAB_CREDENTIAL               # optional, default `false`
 ```
 
