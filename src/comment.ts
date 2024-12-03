@@ -251,6 +251,8 @@ export const comment = async () => {
     CI_MERGE_REQUEST_SOURCE_BRANCH_SHA,
     CI_MERGE_REQUEST_TITLE,
     GITLAB_COMMENT_TYPE,
+    GITLAB_COMMENT_DISCUSSION_AUTORESOLVE,
+    GITLAB_COMMENT_DISCUSSION_AUTORESOLVE_ONLY_CHANGESET_EXISTS,
     GITLAB_ADD_CHANGESET_MESSAGE,
   } = env
 
@@ -321,6 +323,7 @@ export const comment = async () => {
             noteInfo.noteId,
             {
               body: prComment,
+              resolved: GITLAB_COMMENT_DISCUSSION_AUTORESOLVE === 'always' || (GITLAB_COMMENT_DISCUSSION_AUTORESOLVE === 'hasChangeset' && hasChangeset),
             },
           )
         }
