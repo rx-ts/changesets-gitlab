@@ -20,7 +20,9 @@ export type Env = GitLabCIPredefinedVariables &
     GITLAB_CI_USER_NAME?: string
     GITLAB_CI_USER_EMAIL: string
     GITLAB_COMMENT_TYPE: LooseString<'discussion' | 'note'>
-    GITLAB_COMMENT_DISCUSSION_AUTORESOLVE: LooseString<'always' | 'hasChangeset'>
+    GITLAB_COMMENT_DISCUSSION_AUTORESOLVE: LooseString<
+      'always' | 'hasChangeset'
+    >
     GITLAB_ADD_CHANGESET_MESSAGE?: string
     DEBUG_GITLAB_CREDENTIAL: LooseString<'1' | 'true'>
 
