@@ -27,26 +27,13 @@ export const push = async (
 }
 
 export const pushTags = async () => {
-  // Get the commit hash
-  const { stdout: commitHash } = await execWithOutput("git", [
-    "rev-parse",
-    "HEAD",
-  ]);
-  // Get the tags that contain the commit
-  const { stdout: tags } = await execWithOutput("git", [
-    "--no-pager",
-    "tag",
-    "--contains",
-    commitHash,
-  ]);
-  // Separate the tags into a list
-  const tagList = tags.split("\n");
-  // Push the tags individually to the remote
-  for (const tag of tagList) {
-    await exec("git", ["push", "origin", tag]);
-  }
-};
+  await exec('git', ['push', 'origin', '--tags'])
+}
 
+export const pushTag = async (tag: string) => {
+  console.log('Pushing tag: ' + tag)
+  await exec('git', ['push', 'origin', tag])
+}
 
 export const switchToMaybeExistingBranch = async (branch: string) => {
   const { stderr } = await execWithOutput('git', ['checkout', branch], {

@@ -88,6 +88,7 @@ export const main = async ({
         script: publishScript,
         gitlabToken: GITLAB_TOKEN,
         createGitlabReleases: getInput('create_gitlab_releases') !== 'false',
+        pushAllTags: getInput('push_all_tags') !== 'false',
       })
 
       if (result.published) {
