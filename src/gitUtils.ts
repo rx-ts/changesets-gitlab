@@ -35,9 +35,11 @@ export const pushTags = async () => {
   ])
   // Separate the tags into a list
   const tagList = tags.split('\n')
-  // Push the tags individually to the remote
-  for (const tag of tagList) {
-    await exec('git', ['push', 'origin', tag])
+  if (tagList.length > 0) {
+    // Push the tags individually to the remote
+    for (const tag of tagList) {
+      await exec('git', ['push', 'origin', tag])
+    }
   }
 }
 
