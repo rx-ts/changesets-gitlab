@@ -7,7 +7,7 @@ dotenv.config()
 
 let isGitlabTokenValidated = false
 
-export const env = {
+const env = {
   ...process.env,
 
   CI_MERGE_REQUEST_IID: +process.env.CI_MERGE_REQUEST_IID!,
@@ -32,3 +32,8 @@ export const env = {
     return process.env.GITLAB_TOKEN!
   },
 } as Env
+
+env.GITLAB_COMMENT_TYPE_IF_MISSING =
+  process.env.GITLAB_COMMENT_TYPE_IF_MISSING ?? env.GITLAB_COMMENT_TYPE
+
+export { env }

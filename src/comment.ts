@@ -250,8 +250,11 @@ export const comment = async () => {
     CI_MERGE_REQUEST_SOURCE_BRANCH_SHA,
     CI_MERGE_REQUEST_TITLE,
     GITLAB_COMMENT_TYPE,
+    GITLAB_COMMENT_TYPE_IF_MISSING,
     GITLAB_ADD_CHANGESET_MESSAGE,
   } = env
+
+  let comment_type = GITLAB_COMMENT_TYPE
 
   if (mrBranch.startsWith('changeset-release')) {
     return
@@ -309,7 +312,10 @@ export const comment = async () => {
         : getAbsentMessage(latestCommitSha, addChangesetUrl, releasePlan)) +
       errFromFetchingChangedFiles
 
-    switch (GITLAB_COMMENT_TYPE) {
+    if (!hasChangeset) {
+      comment_type = GITLAB_COMMENT_TYPE_IF_MISSING
+    }
+    switch (comment_type) {
       case 'discussion': {
         if (noteInfo) {
           return api.MergeRequestDiscussions.editNote(
@@ -343,7 +349,7 @@ export const comment = async () => {
       }
       default: {
         throw new Error(
-          `Invalid comment type "${GITLAB_COMMENT_TYPE}", should be "discussion" or "note"`,
+          `Invalid comment type "${comment_type}", should be "discussion" or "note"`,
         )
       }
     }
