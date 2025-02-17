@@ -250,6 +250,7 @@ export const comment = async () => {
     CI_MERGE_REQUEST_SOURCE_BRANCH_SHA,
     CI_MERGE_REQUEST_TITLE,
     GITLAB_COMMENT_TYPE,
+    GITLAB_COMMENT_DISCUSSION_AUTORESOLVE,
     GITLAB_ADD_CHANGESET_MESSAGE,
   } = env
 
@@ -312,6 +313,19 @@ export const comment = async () => {
     switch (GITLAB_COMMENT_TYPE) {
       case 'discussion': {
         if (noteInfo) {
+          if (
+            GITLAB_COMMENT_DISCUSSION_AUTORESOLVE === 'always' ||
+            (GITLAB_COMMENT_DISCUSSION_AUTORESOLVE === 'hasChangeset' &&
+              hasChangeset)
+          ) {
+            await api.MergeRequestDiscussions.resolve(
+              context.projectId,
+              mrIid,
+              noteInfo.discussionId,
+              true,
+            )
+          }
+
           return api.MergeRequestDiscussions.editNote(
             context.projectId,
             mrIid,
