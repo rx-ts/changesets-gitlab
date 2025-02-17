@@ -19,6 +19,12 @@ export const env = {
     process.env.GITLAB_CI_USER_EMAIL || 'gitlab[bot]@users.noreply.gitlab.com',
   GITLAB_COMMENT_TYPE: process.env.GITLAB_COMMENT_TYPE ?? 'discussion',
   DEBUG_GITLAB_CREDENTIAL: process.env.DEBUG_GITLAB_CREDENTIAL ?? 'false',
+  GITLAB_COMMENT_CUSTOM_LINKS:
+    process.env.GITLAB_COMMENT_CUSTOM_LINKS ?? 'false',
+  UPDATE_PACKAGE_LOCK_BEFORE_MR:
+    process.env.UPDATE_PACKAGE_LOCK_BEFORE_MR ?? 'false',
+  UPDATE_PACKAGE_LOCK_SCRIPT:
+    process.env.UPDATE_PACKAGE_LOCK_BEFORE_MR ?? 'npm install',
 
   // only check for the token if we are explicitly using it
   // eslint-disable-next-line sonar/function-name

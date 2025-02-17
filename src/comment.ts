@@ -64,6 +64,8 @@ const getReleasePlanMessage = (releasePlan: ReleasePlan | null) => {
 </details>`
 }
 
+const useCustomLinks = env.GITLAB_COMMENT_CUSTOM_LINKS !== 'false'
+
 const getAbsentMessage = (
   commitSha: string,
   addChangesetUrl: string,
@@ -76,10 +78,15 @@ Merging this MR will not cause a version bump for any packages. If these changes
 
 ${getReleasePlanMessage(releasePlan)}
 
+${
+  useCustomLinks
+    ? env.GITLAB_COMMENT_CUSTOM_LINKS
+    : `
 [Click here to learn what changesets are, and how to add one](https://github.com/changesets/changesets/blob/master/docs/adding-a-changeset.md).
 
 [Click here if you're a maintainer who wants to add a changeset to this MR](${addChangesetUrl})
-
+`
+}
 __${generatedByBotNote}__
 `
 
@@ -94,11 +101,15 @@ Latest commit: ${commitSha}
 **The changes in this MR will be included in the next version bump.**
 
 ${getReleasePlanMessage(releasePlan)}
-
+${
+  useCustomLinks
+    ? env.GITLAB_COMMENT_CUSTOM_LINKS
+    : `
 Not sure what this means? [Click here  to learn what changesets are](https://github.com/changesets/changesets/blob/master/docs/adding-a-changeset.md).
 
 [Click here if you're a maintainer who wants to add another changeset to this MR](${addChangesetUrl})
-
+`
+}
 __${generatedByBotNote}__
 `
 
