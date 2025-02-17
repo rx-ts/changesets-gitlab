@@ -30,6 +30,11 @@ export const pushTags = async () => {
   await exec('git', ['push', 'origin', '--tags'])
 }
 
+export const pushTag = async (tag: string) => {
+  console.log('Pushing tag: ' + tag)
+  await exec('git', ['push', 'origin', tag])
+}
+
 export const switchToMaybeExistingBranch = async (branch: string) => {
   const { stderr } = await execWithOutput('git', ['checkout', branch], {
     ignoreReturnCode: true,

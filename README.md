@@ -31,6 +31,7 @@ GitLab CI cli for [changesets](https://github.com/atlassian/changesets) like its
 - `INPUT_TARGET_BRANCH` -> The merge request target branch. Defaults to current branch
 - `INPUT_CREATE_GITLAB_RELEASES` - A boolean value to indicate whether to create Gitlab releases after publish or not. Default true.
 - `INPUT_LABELS` - A comma separated string of labels to be added to the version package Gitlab Merge request
+- `INPUT_PUSH_ALL_TAGS` - A boolean value to indicate whether to push all tags at once using `git push origin --tags` [see](https://github.com/un-ts/changesets-gitlab/issues/194). Default true.
 
 ### Outputs
 

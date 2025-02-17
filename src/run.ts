@@ -60,6 +60,7 @@ interface PublishOptions {
   script: string
   gitlabToken: string
   createGitlabReleases?: boolean
+  pushAllTags?: boolean
   cwd?: string
 }
 
@@ -82,6 +83,7 @@ export async function runPublish({
   script,
   gitlabToken,
   createGitlabReleases = true,
+  pushAllTags = true,
   cwd = process.cwd(),
 }: PublishOptions): Promise<PublishResult> {
   const api = createApi(gitlabToken)
@@ -93,7 +95,9 @@ export async function runPublish({
     { cwd },
   )
 
-  await gitUtils.pushTags()
+  if (pushAllTags) {
+    await gitUtils.pushTags()
+  }
 
   const { packages, tool } = await getPackages(cwd)
   const releasedPackages: Package[] = []
@@ -113,6 +117,11 @@ export async function runPublish({
 
       if (match) {
         releasedPackages.push(pkg)
+        if (!pushAllTags) {
+          await gitUtils.pushTag(
+            `${pkg.packageJson.name}@${pkg.packageJson.version}`,
+          )
+        }
         if (createGitlabReleases) {
           await createRelease(api, {
             pkg,
@@ -141,6 +150,13 @@ export async function runPublish({
         )
       }
       releasedPackages.push(pkg)
+    }
+    if (!pushAllTags) {
+      for (const pkg of releasedPackages) {
+        await gitUtils.pushTag(
+          `${pkg.packageJson.name}@${pkg.packageJson.version}`,
+        )
+      }
     }
     if (createGitlabReleases) {
       await Promise.all(
